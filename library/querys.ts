@@ -82,7 +82,6 @@ async function ConditionNamesAllStr(db: Db, size: number) {
 }
 
 async function alternativeName(db: Db, name: string) {
-    // TODO: check why the function not end the program
     let con = await find.Read_Data_Col_2(db, 'Drugs', {drugName: name}, 'condition');
     let data = await find.Read_Data_Col_2(db, 'Drugs', {condition: con[0]}, 'drugName');
     return data;
