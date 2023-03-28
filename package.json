@@ -1,0 +1,22 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "description": "my data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ptoloudis",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "csv-parser": "^3.0.0",
+    "mongodb": "^5.1.0",
+    "mongodb-core": "^3.2.7",
+    "xlsx": "^0.18.5"
+  }
+}
