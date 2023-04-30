@@ -10,13 +10,16 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.15.3",
-    "typescript": "^5.0.2"
+    "mongodb-core": "^3.2.7",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "commander": "^10.0.0",
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "inquirer": "^7.3.3",
     "mongodb": "^5.1.0",
-    "mongodb-core": "^3.2.7",
+    "package.json": "^2.0.1",
     "xlsx": "^0.18.5"
   }
 }
