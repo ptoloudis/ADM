@@ -2,8 +2,15 @@
 
 import { Db } from 'mongodb';
 import { exit } from 'process';
-import { DrugData, pdb_no_dups, pdb_seq } from './my_interface';
 
+/**
+ * It takes in a database, a collection name, and some data, and it inserts the data into the
+ * collection
+ * @param {Db} db - Db - the database object
+ * @param {string} collectionName - The name of the collection you want to insert into.
+ * @param {any} data - the data to be inserted
+ * @returns The return code of the function.
+ */
 async function insert_one(db: Db, collectionName: string, data: any) {
   // Return codes: 0 = success, -1 = invalid data, -2 = something is null, -3 = duplicate entry, -4 = permission denied
 
@@ -52,11 +59,20 @@ async function insert_one(db: Db, collectionName: string, data: any) {
     return 0;
   }
   else {
+    console.log("Invalid data or collection name");
     return -1;
   }
 }
 
 
+/**
+ * It takes in a database, a collection name, and an array of data, and it inserts the data into the
+ * database
+ * @param {Db} db - Db - the database object
+ * @param {string} collectionName - The name of the collection you want to insert into.
+ * @param {any} data - the data to be inserted
+ * @returns The return codes are being returned.
+ */
 async function insert_many(db: Db, collectionName: string, data: any) {
     // Return codes: 0 = success, -1 = invalid data, -2 = something is null
     if (data == null || collectionName == null || db == null) {
@@ -116,12 +132,17 @@ async function insert_many(db: Db, collectionName: string, data: any) {
     }   
 }
 
-function isDrugData(data: any): data is DrugData {
+/**
+ * If the data has the properties of DrugData, then it is DrugData
+ * @param {any} data - any - this is the data that we're checking
+ * @returns a boolean value.
+ */
+function isDrugData(data: any){
     return (typeof data.drugName === 'string' &&
             typeof data.condition === 'string');
 }
 
-function isPdbNoDups(data: any): data is pdb_no_dups {
+function isPdbNoDups(data: any){
     return (typeof data.structureId === 'string' &&
             typeof data.classification === 'string' &&
             typeof data.experimentalTechnique === 'string' &&
@@ -137,7 +158,7 @@ function isPdbNoDups(data: any): data is pdb_no_dups {
             typeof data.publicationYear === 'number');
 }
 
-function isPdbSeq(data: any): data is pdb_seq {
+function isPdbSeq(data: any){
     return (typeof data.structureId === 'string' &&
             typeof data.chainId === 'string' &&
             typeof data.sequence === 'string' &&
@@ -146,4 +167,4 @@ function isPdbSeq(data: any): data is pdb_seq {
 }
 
 
-export { insert_one };
+export { insert_one, insert_many };

@@ -1,18 +1,9 @@
 import * as XLSX from 'xlsx';
 import { MongoClient} from 'mongodb';
 import { DuplicateKeyError } from 'mongodb-core';
+import {connect, disconnect, db} from '../library/connection.js';
 
 
-const url = 'mongodb+srv://ptoloudis12:2O6fyqkz4GNwauYk@cluster0.t16ctbg.mongodb.net/?retryWrites=true&w=majority';
-const client = new MongoClient(url);
-const dbName = 'ADB';
-let db;
-
-async function connect() {
-  await client.connect();
-  db = client.db(dbName);
-  console.log('Connected to MongoDB');
-}
 
 async function insertData(data: any, collectionName: string) {
   let collection = db.collection(collectionName);
@@ -28,7 +19,7 @@ async function insertData(data: any, collectionName: string) {
 }
 
 async function main() {
-  await connect();
+  await connect('dev');
   
   let workbook, worksheet, dt;
 
@@ -51,7 +42,7 @@ async function main() {
   for (const data of dt)
     await insertData(data, 'pdb_no_dups');
 
-  await client.close();
+  disconnect();
 
 
 }
