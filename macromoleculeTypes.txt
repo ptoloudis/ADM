@@ -1,9 +1,0 @@
-DNA
-DNA#DNA/RNA Hybrid
-DNA#RNA
-DNA/RNA Hybrid
-Protein
-Protein#DNA
-Protein#RNA
-RNA
-RNA#DNA/RNA Hybrid
